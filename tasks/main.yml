@@ -1,0 +1,6 @@
+---
+- name: Process each item in config_templates
+  include_tasks: template.yml
+  loop: '{{ config_templates }}'
+  loop_control:
+    loop_var: template_item

@@ -1,0 +1,15 @@
+---
+# - name: Debug
+#   debug:
+#     var: template_item
+- name: Register variables
+  set_fact:
+    '{{ item.keys() | first }}': '{{ item.values() | first }}'
+  loop: '{{ template_item.vars }}'
+  when: template_item.vars is defined
+
+- name: Apply web.config template
+  win_template:
+    src: '{{ template_item.src }}'
+    dest: '{{ template_item.dest }}'
+    backup: '{{ template_item.backup }}'
